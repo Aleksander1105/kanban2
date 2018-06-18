@@ -6,10 +6,12 @@ import { createLane } from '../Lane/LaneActions';
 import styles from '../Lane/Lane.css';
 
 const Kanban = (props) => (
-  <div>
-    <button className={styles.AddLane}>Add lane</button>
-    <Lanes lanes={props.lanes} />
-  </div>
+  <button
+      className={styles.AddLane}
+      onClick={() => props.createLane({
+        name: 'New lane',
+      })}
+    >Add lane</button>
 );
 
 Kanban.need = [() => { return fetchLanes(); }];
@@ -28,10 +30,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Kanban);
-
-<button
-      className={styles.AddLane}
-      onClick={() => props.createLane({
-        name: 'New lane',
-      })}
-    >Add lane</button>
